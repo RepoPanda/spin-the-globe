@@ -1,0 +1,28 @@
+* {
+    background: linear-gradient(black, gold);
+}
+
+#globe-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#globe-image:hover {
+    cursor: progress;
+}
+
+.globe-title {
+    font-size: 100px;
+    color: goldenrod;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+.globe-second-title {
+    font-size: 50px;
+    color: goldenrod;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
