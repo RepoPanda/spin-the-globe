@@ -1,5 +1,10 @@
-
+var introEl = document.getElementById('intro');
 var globeImageEl = document.querySelector('img');
+
+//event listener to make the intro disappear
+introEl.addEventListener('click', function(){
+    introEl.innerHTML = " ";
+})
 
 
 //array of the countries
@@ -279,7 +284,21 @@ globeImageEl.addEventListener('click', function () {
                 })
                 .then(function (data) {
                     console.log(data);
+
+                    const options = {
+                        method: 'GET',
+                        headers: {
+                            'X-RapidAPI-Key': 'e85ea256d0mshf1ec8dba09eaac2p196d46jsn8cc5e90c6f6f',
+                            'X-RapidAPI-Host': 'hotels4.p.rapidapi.com'
+                        }
+                    };
+                    
+                    fetch(`https://hotels4.p.rapidapi.com/locations/v3/search?q=${randomCity.city}&locale=en_US&langid=1033&siteid=300000001`, options)
+                    
+                        .then(response => response.json())
+                        .then(response => console.log(response))
                 });
         });
-}
-)
+        
+        
+})
