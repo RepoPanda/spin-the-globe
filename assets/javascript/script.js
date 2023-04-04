@@ -293,7 +293,7 @@ globeImageEl.addEventListener('click', function () {
                         }
                     };
                     
-                    fetch(`https://hotels4.p.rapidapi.com/locations/v3/search?q=${randomCity.city}&locale=en_US&langid=1033&siteid=300000001`, options)
+                    fetch(`https://hotels4.p.rapidapi.com/locations/v3/search?q=${randomCity.city || randomCity.name || randomCity.country}&locale=en_US&langid=1033&siteid=300000001`, options)
                     
                         .then(response => response.json())
                         .then(response => console.log(response))
