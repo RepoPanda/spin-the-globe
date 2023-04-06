@@ -1,8 +1,13 @@
 var introEl = document.getElementById('intro');
+var linkEl = document.getElementById('link');
+var nameEl = document.getElementById('nameofrecommand');
+var addressEl = document.getElementById('addressofrecommand');
 var globeImageEl = document.querySelector('img');
+var subTitleEl = document.querySelector('h4');
+var containerEl = document.getElementById('container');
 
 //event listener to make the intro disappear
-introEl.addEventListener('click', function(){
+introEl.addEventListener('click', function () {
     introEl.innerHTML = " ";
 })
 
@@ -12,7 +17,6 @@ const countryList = [
     "Afghanistan",
     "Albania",
     "Algeria",
-    "American Samoa",
     "Andorra",
     "Angola",
     "Anguilla",
@@ -45,7 +49,7 @@ const countryList = [
     "Bulgaria",
     "Burkina Faso",
     "Burundi",
-    "Cabo Verde",
+    "Cape Verde",
     "Cambodia",
     "Cameroon",
     "Canada",
@@ -54,20 +58,14 @@ const countryList = [
     "Chad",
     "Chile",
     "China",
-    "Christmas Island",
-    "Cocos (Keeling) Islands",
     "Colombia",
-    "Comoros (the)",
-    "Congo (the Democratic Republic of the)",
-    "Congo (the)",
-    "Cook Islands (the)",
     "Costa Rica",
     "Croatia",
     "Cuba",
-    "Curaçao",
+    "Curacao",
     "Cyprus",
     "Czechia",
-    "Côte d'Ivoire",
+    "Cote d'Ivoire",
     "Denmark",
     "Djibouti",
     "Dominica",
@@ -113,7 +111,6 @@ const countryList = [
     "Iceland",
     "India",
     "Indonesia",
-    "Iran (Islamic Republic of)",
     "Iraq",
     "Ireland",
     "Isle of Man",
@@ -126,8 +123,6 @@ const countryList = [
     "Kazakhstan",
     "Kenya",
     "Kiribati",
-    "Korea (the Democratic People's Republic of)",
-    "Korea (the Republic of)",
     "Kuwait",
     "Kyrgyzstan",
     "Lao People's Democratic Republic",
@@ -152,8 +147,6 @@ const countryList = [
     "Mauritius",
     "Mayotte",
     "Mexico",
-    "Micronesia (Federated States of)",
-    "Moldova (the Republic of)",
     "Monaco",
     "Mongolia",
     "Montenegro",
@@ -168,11 +161,9 @@ const countryList = [
     "New Caledonia",
     "New Zealand",
     "Nicaragua",
-    "Niger (the)",
     "Nigeria",
     "Niue",
     "Norfolk Island",
-    "Northern Mariana Islands",
     "Norway",
     "Oman",
     "Pakistan",
@@ -192,12 +183,11 @@ const countryList = [
     "Romania",
     "Russian Federation",
     "Rwanda",
-    "Réunion",
-    "Saint Barthélemy",
+    "Reunion",
+    "Saint Barthelemy",
     "Saint Helena, Ascension and Tristan da Cunha",
     "Saint Kitts and Nevis",
     "Saint Lucia",
-    "Saint Martin (French part)",
     "Saint Pierre and Miquelon",
     "Saint Vincent and the Grenadines",
     "Samoa",
@@ -209,7 +199,6 @@ const countryList = [
     "Seychelles",
     "Sierra Leone",
     "Singapore",
-    "Sint Maarten (Dutch part)",
     "Slovakia",
     "Slovenia",
     "Solomon Islands",
@@ -219,7 +208,7 @@ const countryList = [
     "South Sudan",
     "Spain",
     "Sri Lanka",
-    "Sudan (the)",
+    "Sudan",
     "Suriname",
     "Svalbard and Jan Mayen",
     "Sweden",
@@ -229,7 +218,6 @@ const countryList = [
     "Tajikistan",
     "Tanzania, United Republic of",
     "Thailand",
-    "Timor-Leste",
     "Togo",
     "Tokelau",
     "Tonga",
@@ -237,27 +225,23 @@ const countryList = [
     "Tunisia",
     "Turkey",
     "Turkmenistan",
-    "Turks and Caicos Islands (the)",
+    "Turks and Caicos Islands",
     "Tuvalu",
     "Uganda",
     "Ukraine",
-    "United Arab Emirates (the)",
-    "United Kingdom of Great Britain and Northern Ireland (the)",
-    "United States Minor Outlying Islands (the)",
-    "United States of America (the)",
+    "United Arab Emirates",
+    "United Kingdom of Great Britain and Northern Ireland",
+    "United States of America",
     "Uruguay",
     "Uzbekistan",
     "Vanuatu",
-    "Venezuela (Bolivarian Republic of)",
     "Viet Nam",
-    "Virgin Islands (British)",
-    "Virgin Islands (U.S.)",
     "Wallis and Futuna",
     "Western Sahara",
     "Yemen",
     "Zambia",
     "Zimbabwe",
-    "Åland Islands"
+    "Aland Islands"
 ];
 
 // outputs a random country
@@ -265,6 +249,11 @@ globeImageEl.addEventListener('click', function () {
     var randomCountryIndex = Math.floor(Math.random() * countryList.length);
     var randomCountry = countryList[randomCountryIndex];
     console.log(randomCountry);
+    var placeId;
+    subTitleEl.innerHTML = "Let's travel to " + randomCountry + '!';
+    linkEl.innerHTML = 'https://www.google.com/search?q=' + randomCountry;
+    linkEl.setAttribute('href', 'https://www.google.com/search?q=' + randomCountry)
+
 
     fetch(`https://api.geoapify.com/v1/geocode/search?text=${randomCountry}&format=json&apiKey=5105f0bb5b7c4e97bceb5e70a9de8ceb`)
         .then(function (response) {
@@ -273,17 +262,37 @@ globeImageEl.addEventListener('click', function () {
         .then(function (data) {
             console.log(data);
 
-            var randomCityIndex = Math.floor(Math.random() * data.results.length);
-            var randomCity = data.results[randomCityIndex];
-            var placeId = data.results[randomCityIndex].place_id
-            console.log(randomCity);
-            
+            for (let index = 0; index < data.results.length; index++) {
+                if (randomCountry === data.results[index].country) {
+                    placeId = data.results[index].place_id;
+                }
+            }
+
             fetch(`https://api.geoapify.com/v2/places?categories=tourism.attraction&filter=place:${placeId}&apiKey=5105f0bb5b7c4e97bceb5e70a9de8ceb`)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (data) {
                     console.log(data);
+
+                    let index = 0;
+                    nameEl.innerHTML = data.features[index].properties.address_line1;
+                    addressEl.innerHTML = data.features[index].properties.address_line2;
+
+                    while (index < data.features.length - 1) {
+                        index++
+
+                        var newnameEl = document.createElement('p')
+                        var newaddressEl = document.createElement('div')
+
+                        containerEl.append(newnameEl);
+                        containerEl.append(newaddressEl);
+
+                        console.log(index)
+                        newnameEl.textContent = data.features[index].properties.address_line1;
+                        newaddressEl.innerHTML = data.features[index].properties.address_line2;
+                    }
+
 
                     const options = {
                         method: 'GET',
@@ -292,13 +301,23 @@ globeImageEl.addEventListener('click', function () {
                             'X-RapidAPI-Host': 'hotels4.p.rapidapi.com'
                         }
                     };
-                    
-                    fetch(`https://hotels4.p.rapidapi.com/locations/v3/search?q=${randomCity.city || randomCity.name || randomCity.country}&locale=en_US&langid=1033&siteid=300000001`, options)
-                    
+
+                    fetch(`https://hotels4.p.rapidapi.com/locations/v3/search?q=${randomCountry}&locale=en_US&langid=1033&siteid=300000001`, options)
+
                         .then(response => response.json())
-                        .then(response => console.log(response))
+                        .then(function (data) {
+                            console.log(data);
+
+                            for (let index = 0; index < data.sr.length; index++) {
+                                if (data.sr[index].type === 'HOTEL') {
+                                    // here is the information show on the page
+                                    console.log(data.sr[index])
+                                } else {
+                                    // sorry the hotel service is not available
+                                    console.log('sorry the hotel service is not available')
+                                };
+                            }
+                        });
                 });
-        });
-        
-        
+        })
 })

@@ -10,6 +10,8 @@ body {background-color: black;}
 
 #globe-image:hover {
     cursor: progress;
+    background: goldenrod;
+    box-shadow: 0 0 5px goldenrod, 0 0 25px goldenrod, 0 0 50px goldenrod, 0 0 200px goldenrod;
 }
 
 .globe-title {
@@ -40,4 +42,8 @@ body {background-color: black;}
     transform: translate(-50%, -50%);  
     color:goldenrod;
     font-size: 30px;
+}
+
+p.overlay {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
