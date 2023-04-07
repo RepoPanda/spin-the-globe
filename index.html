@@ -7,18 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
-  <title>SPIN THE GLOBE</title>
+  <title id="title-1">SPIN THE GLOBE</title>
 </head>
 
 <body>
-  <main>
+  <h1>
 
     <h1 class="globe-title">Spin The Globe</h1>
     <h4 class="globe-second-title">Lets Travel!</h4>
 
     <div class="tile is-ancestor">
       <div class="tile is-parent">
-        <article class="tile is-child box">
+        <article id="recs" class="tile is-child box">
           <div class="card-content">
             <div class="media">
               <div class="media-content">
@@ -27,47 +27,42 @@
             </div>
 
           </div>
-          <div id='container'>
-            <p class="subtitle is-6" id='nameofrecommand'></p>
-            <div class="content" id='addressofrecommand'>
-
-            </div>
-          </div>
+          <ul id='container'>
+            <li class="subtitle is-6" id='nameofrecommand'></li>
+            <li class="content" id='addressofrecommand'>
+            </li>
+          </ul>
           <br>
           <a id='link' href=""></a>
           <br>
         </article>
       </div>
-      <div class="tile is-parent">
+      <div id="img" class="tile is-parent">
         <article id="gifcon" class="tile is-child box">
-          <p class="overlay" id="intro">
+          <p class="overlay has-text-centered" id="intro">
             CLICK HERE AND FIND OUT YOUR NEXT TRAVEL DESTINATION!</p>
-          <img id="globe-image" src="https://i.gifer.com/7gRp.gif" alt="spinnig globe">
         </article>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child box">
+        <article id="recs" class="tile is-child box">
           <div class="card-content">
             <div class="media">
               <div class="media-content">
-                <p class="title is-4">John Smith</p>
-                <p class="subtitle is-6">@johnsmith</p>
+                <p class="title is-4">Hotels</p>
+                <br>
               </div>
             </div>
 
-            <div class="content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-              <a href="#">#css</a> <a href="#">#responsive</a>
-              <br>
-              <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-            </div>
+            <ul id='hotelcontainer'>
+              
+            </ul>
         </article>
       </div>
     </div>
 
 
   </main>
+  <footer class="has-text-centered has-text-weight-bold is-size-4"></footer>
   <script src="./assets/javascript/script.js"></script>
 </body>
 
