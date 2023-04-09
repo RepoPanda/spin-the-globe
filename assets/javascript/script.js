@@ -311,7 +311,7 @@ globeImageEl.addEventListener("click", function () {
             method: "GET",
             headers: {
               "X-RapidAPI-Key":
-                "e85ea256d0mshf1ec8dba09eaac2p196d46jsn8cc5e90c6f6f",
+                "4f841537e2msh16efc437fc05345p165d50jsnd2314c717304",
               "X-RapidAPI-Host": "hotels4.p.rapidapi.com",
             },
           };
