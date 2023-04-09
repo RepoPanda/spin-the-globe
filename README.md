@@ -16,10 +16,12 @@ When the browser opens, there are three columns displaying on the screen. The mi
 
 ![Webpage after the user clicks](.assets/images/../../assets/images/127.0.0.1_5502_index.html.png)
 
+To access our deployed website, please visit https://repopanda.github.io/spin-the-globe/ .
+
+To access the GitHUb repository please visit https://github.com/RepoPanda/horiseon .
+
 
 ## Credits
-
-
 
 List of collaborators:
 
